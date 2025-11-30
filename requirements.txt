@@ -2,3 +2,8 @@ pandas
 google-play-scraper
 tqdm
 python-dateutil
+transformers
+torch
+nltk
+scikit-learn
+spacy
