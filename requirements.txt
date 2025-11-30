@@ -1,5 +1,0 @@
-pandas
-google-play-scraper
-tqdm
-python-dateutil
-matplotlib
