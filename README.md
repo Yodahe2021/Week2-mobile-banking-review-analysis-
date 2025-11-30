@@ -109,8 +109,8 @@ Each review receives:
 
 | Task | Description | Status |
 |------|-------------|--------|
-| Task-3 | Topic modeling (LDA) | ⏳ Not started |
-| Task-4 | Comparative bank analysis | ⏳ Not started |
+| Task-3 | Database engineering) | ⏳ Not started |
+| Task-4 | insights & visualization | ⏳ Not started |
 
 
 ---
