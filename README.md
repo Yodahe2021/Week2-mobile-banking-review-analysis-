@@ -1,126 +1,97 @@
-# 📊 Mobile Banking App Review Analysis — Ethiopia  
-### *10 Academy Week 2 Challenge (2025)*  
-**Data Collection, Cleaning, Sentiment Analysis & Thematic Analysis**
+# 🏦 Mobile Banking Reviews: Sentiment and Theme Analysis
+
+## 🎯 Project Goal
+
+This project implements an end-to-end data science pipeline to ingest, process, analyze, and report on customer reviews of various mobile banking applications. The primary goal is to **extract actionable competitive insights and thematic issues** from customer feedback to inform product strategy for a specific bank (CBE, based on the file structure).
 
 ---
 
-## 📝 Project Overview  
-This project analyzes customer satisfaction for three major Ethiopian banking apps using **Google Play Store reviews**:
+## 🛠️ Pipeline Overview
 
-- **Commercial Bank of Ethiopia (CBE)**
-- **Bank of Abyssinia (BOA)**
-- **Dashen Bank**
+The project follows a standard Extract, Transform, Load (ETL) and Analysis workflow:
 
-The goal is to support Omega Consultancy in identifying:
-- Key **customer pain points**
-- Main **drivers of satisfaction**
-- Feature improvement opportunities
-- Themes for customer complaints and feedback
+1.  **Extract (Scraping)**: Collect raw customer reviews from an external source.
+2.  **Transform (Preprocessing & Analysis)**: Clean the text data, calculate sentiment scores, and identify recurring themes.
+3.  **Load (Database)**: Store the processed, analyzed data in a persistent relational database.
+4.  **Reporting**: Generate competitive metrics and deep-dive visualizations for stakeholders.
 
-The project follows the complete pipeline:
-1. **Web scraping**  
-2. **Preprocessing & cleaning**  
-3. **Sentiment analysis (VADER)**  
-4. **Thematic analysis (TF-IDF + keyword grouping)**  
-5. (Next tasks) Database engineering, insights & visualization
+## 📁 Directory Structure
 
----
-
-## 🏗️ Project Structure
-
-WEEK2-MOBILE-BANKING-REVIEWS
-├── .github
-│   └── workflows
-│       └── ci.yml
-├── data
-│   ├── processed
-│   │   ├── keywords.csv
-│   │   ├── reviews_clean.csv
-│   │   ├── reviews_task2_with_sentiment_and_th...
-│   │   └── reviews_with_sentiment.csv
-│   └── raw
-│       └── reviews_raw.csv
-├── notebooks
-│   ├── task_1_exploration.ipynb
-│   └── task_2_sentiment_and_themes.ipy...
-├── src
-│   ├── analysis
-│   │   ├── sentiment
-│   │   │   └── sentiment_analysis.py
-│   │   └── themes
-│   │       └── theme_extraction.py
-│   ├── preprocessing
-│   │   └── clean_reviews.py
-│   └── scraper
-│       └── scrape_reviews.py
-├── tests
-├── .venv
-├── .gitignore
-├── README.md
-└── requirements.txt
-
-
+| Directory | Content Description | Key Files |
+| :--- | :--- | :--- |
+| `data/raw` | Initial, unprocessed data files. | `reviews_raw.csv` |
+| `data/processed` | Cleaned and feature-engineered datasets. | `reviews_task2_with_sentiment_and_themes.csv` |
+| `src/scraper` | Scripts for data acquisition. | `scrape_reviews.py` |
+| `src/preprocessing` | Scripts for data cleaning and preparation. | `clean_reviews.py` |
+| `src/analysis/sentiment` | Scripts for calculating sentiment scores. | `sentiment_analysis.py` |
+| `src/analysis/themes` | Scripts for topic/theme extraction (e.g., using clustering or keyword mapping). | `theme_extraction.py` |
+| `src/database` | Scripts for setting up and interacting with the database. | `insert_to_postgres.py`, `create_tables.sql` |
+| `notebooks` | Jupyter notebooks for iterative development, exploration, and final report generation. | `task_4_insights_and_visualizations.ipynb` |
+| `plots` | Output directory for all generated charts and visualizations. | (e.g., competitive_analysis.png) |
+| `reports` | Final output reports and synthesized data summaries. | `task4` directory |
 
 ---
 
-# 🚀 Task-1: Data Collection & Preprocessing
+## 🚀 Getting Started
 
-### ✔️ **1. Web Scraping**  
-Using `google-play-scraper`, we collected:
-- Review text  
-- Star rating  
-- Date  
-- App name  
-- Bank  
+### Prerequisites
 
-Scraping target: **400+ reviews per bank (1200+ total)**.
+You will need Python 3.8+ installed.
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Yodahe2021/Week2-mobile-banking-review-analysis-.git
+    cd WEEK2-MOBILE-BANKING-REVIEWS
+    ```
+2.  **Create and activate a virtual environment (recommended):**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Linux/macOS
+    # .\venv\Scripts\activate # On Windows (PowerShell)
+    ```
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Running the Pipeline
+
+To execute the full data pipeline:
+
+1.  **Data Acquisition:** Run the scraper to get the initial data.
+    ```bash
+    python src/scraper/scrape_reviews.py
+    ```
+2.  **Analysis & Processing:** Run the main analysis script (assuming `final_metrics_cbe.py` orchestrates the cleaning, sentiment, and theme steps).
+    ```bash
+    python src/analysis/final_metrics_cbe.py
+    ```
+3.  **Database Load (Optional):** Load the results into PostgreSQL. Ensure your `db_config.py` is set up.
+    ```bash
+    python src/database/insert_to_postgres.py
+    ```
+4.  **Visualize and Report:** Explore the generated data and create final reports by opening the notebooks:
+    ```bash
+    jupyter notebook notebooks/task_4_insights_and_visualizations.ipynb
+    ```
+
+---
+
+## 📈 Key Findings (Based on Analysis)
+
+* **Competitive Landscape**: Analysis compares **Average Rating** and **Average Sentiment Score** across major mobile banking apps (visualized in `plots/competitive_analysis.png`).
+* **CBE Deep Dive**: The most frequently mentioned customer pain points for CBE were aggressively categorized into themes like:
+    * **Functional Instability (Bugs/Errors)**
+    * **Update and Release Issues**
+    * **Performance (Speed and Lag)**
 
 ---
 
-### ✔️ **2. Preprocessing**
-Performed cleaning:
-- Remove duplicates  
-- Normalize dates  
-- Remove empty reviews  
-- Strip whitespace  
-- Lowercase text  
+## 🤝 Contribution
+
+Contributions are welcome! Please open an issue or submit a pull request for any suggested improvements.
 
 ---
-
-# 🔍 Task-2: Sentiment & Thematic Analysis
-
-## ✔️ Sentiment Analysis (Option 1 — VADER)
-
-VADER used because:
-- Lightweight  
-- Fast  
-- Works inside notebooks  
-- No GPU needed  
-- Handles short reviews well  
-
-Each review receives:
-- `compound` score  
-- Sentiment label (positive/neutral/negative)
-
----
---
-
-## 🚀 Next Steps (Upcoming Tasks)
-
-| Task | Description | Status |
-|------|-------------|--------|
-| Task-3 | Database engineering) | ⏳ Not started |
-| Task-4 | insights & visualization | ⏳ Not started |
-
-
----
-## How to Run
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
-pip install -r requirements.txt
-jupyter notebook notebooks/analysis.ipynb
 
