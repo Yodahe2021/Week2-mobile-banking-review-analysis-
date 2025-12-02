@@ -42,7 +42,7 @@ You will need Python 3.8+ installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [Your Repository URL]
+    git clone https://github.com/Yodahe2021/Week2-mobile-banking-review-analysis-.git
     cd WEEK2-MOBILE-BANKING-REVIEWS
     ```
 2.  **Create and activate a virtual environment (recommended):**
