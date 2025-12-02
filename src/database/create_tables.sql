@@ -12,5 +12,6 @@ CREATE TABLE IF NOT EXISTS reviews (
     review_date DATE,
     sentiment_label VARCHAR(20),
     sentiment_score FLOAT,
+    theme_label VARCHAR(100), -- <--- NEW COLUMN
     source VARCHAR(50)
 );
