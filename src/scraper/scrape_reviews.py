@@ -5,15 +5,15 @@ from tqdm import tqdm
 BANK_APPS = {
     "CBE": {
         "app_id": "com.combanketh.mobilebanking",
-        "app_name": "CBE Mobile Banking"
+        "app_name": "CBE Mobile Banking "
     },
     "BOA": {
-        "app_id": "com.abyssiniabank.mobile",
-        "app_name": "Bank of Abyssinia Mobile"
+        "app_id": "com.boa.boaMobileBanking",
+        "app_name": "BoA Mobile"
     },
     "Dashen": {
-        "app_id": "ccom.dashenbank.mobile",
-        "app_name": "Dashen Mobile Banking"
+        "app_id": "com.dashen.dashensuperapp",
+        "app_name": "Dashen SuperApp"
     }
 }
 

@@ -2,9 +2,7 @@ import pandas as pd
 from transformers import pipeline
 from tqdm import tqdm
 
-MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
-
-def load_data():
+MODEL = "bert-base-multilingual-cased"def load_data():
     return pd.read_csv("data/processed/reviews_clean.csv")
 
 def analyze_sentiment():
